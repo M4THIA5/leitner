@@ -26,7 +26,7 @@ export class LoginStudent {
     const token = jwt.sign(
       { sub: student.id, email: student.email },
       process.env.JWT_SECRET || "default_secret",
-      { expiresIn: "1h" },
+      { expiresIn: "7d" },
     )
 
     return { student, token }
