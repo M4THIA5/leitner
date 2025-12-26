@@ -36,9 +36,8 @@ model Flashcard {
 
 model Tag {
   id        String   @id @default(uuid())
-  name      String
+  name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  flashcard Flashcard @relation(fields: [flashcardId], references: [id])
-  flashcardId String
+  flashcards Flashcard[]
 }
