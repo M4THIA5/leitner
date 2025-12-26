@@ -1,4 +1,4 @@
-import prisma from "./db"
+import prisma from "#db/db"
 import bcrypt from "bcrypt"
 
 const saltRounds = 10

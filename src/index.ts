@@ -2,8 +2,8 @@ import "./load-env"
 import express from "express"
 import cors from "cors"
 import router from "#routers/router"
-import { errorHandle } from "./infrastructure/UI/middlewares/errorHandle"
-import { notFoundHandler } from "./infrastructure/UI/middlewares/notFoundHandler"
+import { errorHandle } from "#middlewares/errorHandle"
+import { notFoundHandler } from "#middlewares/notFoundHandler"
 
 const app = async () => {
   const app = express()

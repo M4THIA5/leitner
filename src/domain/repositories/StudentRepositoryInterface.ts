@@ -1,4 +1,4 @@
-import { Student } from "../entities/Student"
+import { Student } from "#entities/Student"
 
 export interface StudentRepositoryInterface {
   create(student: Student): Promise<void>

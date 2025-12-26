@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest"
-import { errorHandle } from "../../../infrastructure/UI/middlewares/errorHandle"
+import { errorHandle } from "#middlewares/errorHandle"
 import { Request, Response, NextFunction } from "express"
 
 describe("errorHandle Middleware", () => {

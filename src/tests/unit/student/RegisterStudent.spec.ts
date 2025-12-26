@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest"
-import { RegisterStudent } from "../../../application/use-cases/RegisterStudent"
-import { MockStudentRepository } from "../../mocks/MockStudentRepository"
+import { RegisterStudent } from "#use-cases/RegisterStudent"
+import { MockStudentRepository } from "#mocks/MockStudentRepository"
 import bcrypt from "bcrypt"
 
 describe("RegisterStudent Use Case", () => {

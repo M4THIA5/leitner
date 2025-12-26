@@ -1,5 +1,5 @@
-import { Student } from "../../domain/entities/Student"
-import { StudentRepositoryInterface } from "../../domain/repositories/StudentRepositoryInterface"
+import { Student } from "#entities/Student"
+import { StudentRepositoryInterface } from "#domain/repositories/StudentRepositoryInterface"
 import bcrypt from "bcrypt"
 import crypto from "crypto"
 
