@@ -3,9 +3,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "moduleResolution": "bundler",
-    "lib": [
-      "ES2022"
-    ],
+    "lib": ["ES2022"],
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
@@ -20,37 +18,16 @@
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
-      "#controllers/*": [
-        "src/adapters/controllers/*"
-      ],
-      "#mappers/*": [
-        "src/adapters/mappers/*"
-      ],
-      "#repositories/*": [
-        "src/adapters/repositories/*"
-      ],
-      "#infrastructure/*": [
-        "./src/infrastructure/*"
-      ],
-      "#dto/*": [
-        "./src/infrastructure/UI/dto/*"
-      ],
-      "middlewares/*": [
-        "./src/infrastructure/UI/middlewares/*"
-      ],
-      "#routers/*": [
-        "./src/infrastructure/UI/routers/*"
-      ],
-      "#db/*": [
-        "./src/infrastructure/db/*"
-      ]
+      "#controllers/*": ["src/adapters/controllers/*"],
+      "#mappers/*": ["src/adapters/mappers/*"],
+      "#repositories/*": ["src/adapters/repositories/*"],
+      "#infrastructure/*": ["./src/infrastructure/*"],
+      "#dto/*": ["./src/infrastructure/UI/dto/*"],
+      "middlewares/*": ["./src/infrastructure/UI/middlewares/*"],
+      "#routers/*": ["./src/infrastructure/UI/routers/*"],
+      "#db/*": ["./src/infrastructure/db/*"]
     }
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,5 +1,5 @@
-import { Student } from "../../domain/entities/Student";
-import { Student as PrismaStudent } from "../../infrastructure/db/generated/prisma/client";
+import { Student } from "../../domain/entities/Student"
+import { Student as PrismaStudent } from "../../infrastructure/db/generated/prisma/client"
 
 export class StudentMapper {
   static toDomain(prismaStudent: PrismaStudent): Student {
@@ -10,7 +10,7 @@ export class StudentMapper {
       password: prismaStudent.password,
       createdAt: prismaStudent.createdAt,
       updatedAt: prismaStudent.updatedAt,
-    });
+    })
   }
 
   static toPersistence(student: Student): any {
@@ -21,7 +21,7 @@ export class StudentMapper {
       password: student.password,
       createdAt: student.createdAt,
       updatedAt: student.updatedAt,
-    };
+    }
   }
 
   static toResponse(student: Student) {
@@ -31,6 +31,6 @@ export class StudentMapper {
       email: student.email,
       createdAt: student.createdAt,
       updatedAt: student.updatedAt,
-    };
+    }
   }
 }

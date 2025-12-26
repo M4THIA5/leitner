@@ -1,16 +1,16 @@
-import prisma from './db'
-import bcrypt from 'bcrypt'
+import prisma from "./db"
+import bcrypt from "bcrypt"
 
-const saltRounds = 10;
+const saltRounds = 10
 const hashPassword = async (password: string): Promise<string> => {
-  return await bcrypt.hash(password, saltRounds);
-};
+  return await bcrypt.hash(password, saltRounds)
+}
 
 async function main() {
   const studentData = {
-    name: 'admin',
-    email: 'admin@admin.com',
-    password: await hashPassword('Azerty1234!'),
+    name: "admin",
+    email: "admin@admin.com",
+    password: await hashPassword("Azerty1234!"),
   }
 
   const student = await prisma.student.upsert({
@@ -19,7 +19,7 @@ async function main() {
     create: studentData,
   })
 
-  console.log('Upserted student:', student);
+  console.log("Upserted student:", student)
 }
 
 main()

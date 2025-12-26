@@ -1,11 +1,11 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express"
 
 export const notFoundHandler = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
-  const error: any = new Error(`Not Found - ${req.originalUrl}`);
-  error.status = 404;
-  next(error);
-};
+  const error: any = new Error(`Not Found - ${req.originalUrl}`)
+  error.status = 404
+  next(error)
+}
