@@ -10,7 +10,10 @@ export class FlashcardRepository implements IFlashcardRepository {
       data: {
         ...data,
         tags: {
-          create: flashcard.tags.map((name) => ({ name })),
+          connectOrCreate: flashcard.tags.map((name) => ({
+            where: { name },
+            create: { name },
+          })),
         },
       },
     })
@@ -37,33 +40,24 @@ export class FlashcardRepository implements IFlashcardRepository {
   }
 
   async update(flashcard: Flashcard): Promise<void> {
-    // We'll handle tags update by deleting old tags and creating new ones for simplicity
-    // or we could do something more sophisticated. 
-    // Given the Tag model has a required flashcardId, this is a reasonable approach for a first implementation.
-    
-    await prisma.$transaction([
-      prisma.tag.deleteMany({
-        where: { flashcardId: flashcard.id },
-      }),
-      prisma.flashcard.update({
-        where: { id: flashcard.id },
-        data: {
-          question: flashcard.question,
-          answer: flashcard.answer,
-          updatedAt: flashcard.updatedAt,
-          tags: {
-            create: flashcard.tags.map((name) => ({ name })),
-          },
+    await prisma.flashcard.update({
+      where: { id: flashcard.id },
+      data: {
+        question: flashcard.question,
+        answer: flashcard.answer,
+        updatedAt: flashcard.updatedAt,
+        tags: {
+          set: [], // Disconnect all current tags
+          connectOrCreate: flashcard.tags.map((name) => ({
+            where: { name },
+            create: { name },
+          })),
         },
-      }),
-    ])
+      },
+    })
   }
 
   async delete(id: string): Promise<void> {
-    // Delete tags first due to foreign key constraints if not using CASCADE
-    await prisma.tag.deleteMany({
-      where: { flashcardId: id },
-    })
     await prisma.flashcard.delete({
       where: { id },
     })
