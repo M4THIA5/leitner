@@ -20,4 +20,25 @@ model Student {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  flashcards Flashcard[]
+}
+
+model Flashcard {
+  id        String   @id @default(uuid())
+  question  String
+  answer    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tags      Tag[]
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId String
+}
+
+model Tag {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  flashcard Flashcard @relation(fields: [flashcardId], references: [id])
+  flashcardId String
 }
