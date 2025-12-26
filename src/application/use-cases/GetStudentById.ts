@@ -1,14 +1,14 @@
-import { Student } from "../../domain/entities/Student";
-import { StudentRepositoryInterface } from "../../domain/repositories/StudentRepositoryInterface";
+import { Student } from "../../domain/entities/Student"
+import { StudentRepositoryInterface } from "../../domain/repositories/StudentRepositoryInterface"
 
 export class GetStudentById {
   constructor(private studentRepository: StudentRepositoryInterface) {}
 
   async execute(id: string): Promise<Student> {
-    const student = await this.studentRepository.findById(id);
+    const student = await this.studentRepository.findById(id)
     if (!student) {
-      throw new Error("Student not found");
+      throw new Error("Student not found")
     }
-    return student;
+    return student
   }
 }
