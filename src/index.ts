@@ -1,8 +1,7 @@
+import "./load-env"
 import express from "express"
 import cors from "cors"
-import dotenv from "dotenv"
-
-dotenv.config()
+import router from "#routers/router"
 
 const app = async () => {
   const app = express()
@@ -14,6 +13,8 @@ const app = async () => {
   app.get("/", (req, res) => {
     res.send("Hello, World!")
   })
+
+  app.use(router)
 
   app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`)
