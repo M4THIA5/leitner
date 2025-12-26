@@ -1,0 +1,24 @@
+meta {
+  name: Modifier une Flashcard
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{API_URL}}/flashcards/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
+
+body:json {
+  {
+    "id": "flashcard-id-here",
+    "studentId": "student-id-here",
+    "question": "Question modifiée ?",
+    "answer": "Réponse modifiée."
+  }
+}
