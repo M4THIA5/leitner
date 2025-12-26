@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express"
-import { RegisterStudent } from "../../application/use-cases/RegisterStudent"
-import { LoginStudent } from "../../application/use-cases/LoginStudent"
-import { GetStudentById } from "../../application/use-cases/GetStudentById"
-import { StudentRepository } from "../repositories/StudentRepository"
-import { StudentMapper } from "../mappers/StudentMapper"
-import { AuthRequest } from "../../infrastructure/UI/middlewares/authMiddleware"
+import { RegisterStudent } from "#use-cases/RegisterStudent"
+import { LoginStudent } from "#use-cases/LoginStudent"
+import { GetStudentById } from "#use-cases/GetStudentById"
+import { StudentRepository } from "#repositories/StudentRepository"
+import { StudentMapper } from "#mappers/StudentMapper"
+import { AuthRequest } from "#middlewares/authMiddleware"
 
 export class StudentController {
   private registerStudentUseCase: RegisterStudent

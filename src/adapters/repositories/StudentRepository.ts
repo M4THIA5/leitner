@@ -1,7 +1,7 @@
-import { Student } from "../../domain/entities/Student"
-import { StudentRepositoryInterface } from "../../domain/repositories/StudentRepositoryInterface"
-import prisma from "../../infrastructure/db/db"
-import { StudentMapper } from "../mappers/StudentMapper"
+import { Student } from "#entities/Student"
+import { StudentRepositoryInterface } from "#domain/repositories/StudentRepositoryInterface"
+import prisma from "#db/db"
+import { StudentMapper } from "#mappers/StudentMapper"
 
 export class StudentRepository implements StudentRepositoryInterface {
   async create(student: Student): Promise<void> {

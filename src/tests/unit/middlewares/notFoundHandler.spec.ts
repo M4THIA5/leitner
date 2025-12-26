@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest"
-import { notFoundHandler } from "../../../infrastructure/UI/middlewares/notFoundHandler"
+import { notFoundHandler } from "#middlewares/notFoundHandler"
 import { Request, Response, NextFunction } from "express"
 
 describe("notFoundHandler Middleware", () => {

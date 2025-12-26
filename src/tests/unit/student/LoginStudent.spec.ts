@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest"
-import { LoginStudent } from "../../../application/use-cases/LoginStudent"
-import { RegisterStudent } from "../../../application/use-cases/RegisterStudent"
-import { MockStudentRepository } from "../../mocks/MockStudentRepository"
+import { LoginStudent } from "#use-cases/LoginStudent"
+import { RegisterStudent } from "#use-cases/RegisterStudent"
+import { MockStudentRepository } from "#mocks/MockStudentRepository"
 
 describe("LoginStudent Use Case", () => {
   let studentRepository: MockStudentRepository
