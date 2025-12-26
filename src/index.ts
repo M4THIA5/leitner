@@ -2,6 +2,8 @@ import "./load-env"
 import express from "express"
 import cors from "cors"
 import router from "#routers/router"
+import { errorHandle } from "./infrastructure/UI/middlewares/errorHandle"
+import { notFoundHandler } from "./infrastructure/UI/middlewares/notFoundHandler"
 
 const app = async () => {
   const app = express()
@@ -15,6 +17,10 @@ const app = async () => {
   })
 
   app.use(router)
+
+  app.use(notFoundHandler)
+
+  app.use(errorHandle)
 
   app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`)
