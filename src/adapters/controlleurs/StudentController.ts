@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { RegisterStudent } from "../../application/use-cases/RegisterStudent";
 import { LoginStudent } from "../../application/use-cases/LoginStudent";
 import { GetStudentById } from "../../application/use-cases/GetStudentById";
@@ -18,17 +18,17 @@ export class StudentController {
     this.getStudentByIdUseCase = new GetStudentById(studentRepository);
   }
 
-  async register(req: Request, res: Response): Promise<void> {
+  async register(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { name, email, password } = req.body;
       const student = await this.registerStudentUseCase.execute({ name, email, password });
       res.status(201).json(StudentMapper.toResponse(student));
     } catch (error: any) {
-      res.status(400).json({ message: error.message });
+      next(error);
     }
   }
 
-  async login(req: Request, res: Response): Promise<void> {
+  async login(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { email, password } = req.body;
       const { student, token } = await this.loginStudentUseCase.execute({ email, password });
@@ -37,11 +37,11 @@ export class StudentController {
         token,
       });
     } catch (error: any) {
-      res.status(401).json({ message: error.message });
+      next(error);
     }
   }
 
-  async getProfile(req: AuthRequest, res: Response): Promise<void> {
+  async getProfile(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const studentId = req.user?.id;
       if (!studentId) {
@@ -51,7 +51,7 @@ export class StudentController {
       const student = await this.getStudentByIdUseCase.execute(studentId);
       res.status(200).json(StudentMapper.toResponse(student));
     } catch (error: any) {
-      res.status(401).json({ message: error.message });
+      next(error);
     }
   }
 }
