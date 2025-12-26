@@ -3,6 +3,5 @@ node_modules/
 dist/
 
 .env
-/src/generated/prisma
 
-/prisma/src/infrascructure/db/generated/prisma
+src/infrastructure/db/generated/
