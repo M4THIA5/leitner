@@ -9,10 +9,19 @@ export class MockStudentRepository implements StudentRepositoryInterface {
   }
 
   async findByEmail(email: string): Promise<Student | null> {
-    return this.students.find((s) => s.email === email) || null
+    const student = this.students.find((s) => s.email === email)
+    return student || null
   }
 
   async findById(id: string): Promise<Student | null> {
-    return this.students.find((s) => s.id === id) || null
+    const student = this.students.find((s) => s.id === id)
+    return student || null
+  }
+
+  async update(student: Student): Promise<void> {
+    const index = this.students.findIndex((s) => s.id === student.id)
+    if (index !== -1) {
+      this.students[index] = student
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { NextFunction, Response } from "express"
 import { AuthRequest } from "#middlewares/authMiddleware"
 import { CardRepository } from "#repositories/CardRepository"
+import { StudentRepository } from "#repositories/StudentRepository"
 import { CreateCard } from "#use-cases/card/CreateCard"
 import { ListCards } from "#use-cases/card/ListCards"
 import { AnswerCard } from "#use-cases/card/AnswerCard"
@@ -15,10 +16,14 @@ export class CardController {
 
   constructor() {
     const cardRepository = new CardRepository()
+    const studentRepository = new StudentRepository()
     this.createCardUseCase = new CreateCard(cardRepository)
     this.listCardsUseCase = new ListCards(cardRepository)
     this.answerCardUseCase = new AnswerCard(cardRepository)
-    this.getQuizzCardsUseCase = new GetQuizzCards(cardRepository)
+    this.getQuizzCardsUseCase = new GetQuizzCards(
+      cardRepository,
+      studentRepository,
+    )
   }
 
   async create(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {

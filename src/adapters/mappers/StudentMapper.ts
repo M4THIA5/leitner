@@ -8,6 +8,7 @@ export class StudentMapper {
       name: prismaStudent.name,
       email: prismaStudent.email,
       password: prismaStudent.password,
+      lastQuizzDate: prismaStudent.lastQuizzDate || undefined,
       createdAt: prismaStudent.createdAt,
       updatedAt: prismaStudent.updatedAt,
     })
@@ -19,6 +20,7 @@ export class StudentMapper {
       name: student.name,
       email: student.email,
       password: student.password,
+      lastQuizzDate: student.lastQuizzDate,
       createdAt: student.createdAt,
       updatedAt: student.updatedAt,
     }
@@ -29,6 +31,7 @@ export class StudentMapper {
       id: student.id,
       name: student.name,
       email: student.email,
+      lastQuizzDate: student.lastQuizzDate,
       createdAt: student.createdAt,
       updatedAt: student.updatedAt,
     }

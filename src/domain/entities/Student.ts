@@ -4,6 +4,7 @@ export class Student {
     public readonly name: string,
     public readonly email: string,
     public readonly password: string,
+    public readonly lastQuizzDate: Date | undefined,
     public readonly createdAt: Date,
     public readonly updatedAt: Date,
   ) {}
@@ -13,6 +14,7 @@ export class Student {
     name: string
     email: string
     password: string
+    lastQuizzDate?: Date
     createdAt: Date
     updatedAt: Date
   }): Student {
@@ -21,6 +23,7 @@ export class Student {
       props.name,
       props.email,
       props.password,
+      props.lastQuizzDate,
       props.createdAt,
       props.updatedAt,
     )

@@ -30,4 +30,14 @@ export class StudentRepository implements StudentRepositoryInterface {
 
     return StudentMapper.toDomain(prismaStudent)
   }
+
+  async update(student: Student): Promise<void> {
+    const data = StudentMapper.toPersistence(student)
+    await prisma.student.update({
+      where: { id: student.id },
+      data: {
+        lastQuizzDate: data.lastQuizzDate,
+      },
+    })
+  }
 }

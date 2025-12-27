@@ -29,6 +29,7 @@ model Student {
   name      String
   email     String   @unique
   password  String
+  lastQuizzDate DateTime?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   cards     Card[]
