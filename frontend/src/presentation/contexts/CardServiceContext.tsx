@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 import { CardService } from '@/application/services/CardService';
 import { CardApiRepository } from '@/adapters/repositories/CardApiRepository';
 import { ERROR_MESSAGES } from '@/shared/constants/strings';
