@@ -1,42 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card } from '@/domain/entities';
-import { CardService } from '@/application/services/CardService';
-import { CardApiRepository } from '@/adapters/repositories/CardApiRepository';
-
-const cardService = new CardService(new CardApiRepository());
+import { useCardService } from '@/presentation/contexts/CardServiceContext';
+import { ERROR_MESSAGES } from '@/shared/constants/strings';
 
 export function useQuiz(date?: string) {
+  const cardService = useCardService();
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadQuizCards();
-  }, [date]);
-
-  const loadQuizCards = async () => {
+  const loadQuizCards = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
       const data = await cardService.getQuizCards(date);
       setCards(data);
     } catch (err) {
-      setError('Erreur lors du chargement du quiz');
+      setError(ERROR_MESSAGES.LOAD_QUIZ);
       console.error(err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [cardService, date]);
+
+  useEffect(() => {
+    loadQuizCards();
+  }, [loadQuizCards]);
 
   const answerCard = async (cardId: string, isValid: boolean): Promise<void> => {
     try {
       setError(null);
       await cardService.answerCard(cardId, isValid);
-      setCards(cards.filter((card) => card.id !== cardId));
+      setCards(cards.filter((card: Card) => card.id !== cardId));
     } catch (err) {
-      const errorMessage = 'Erreur lors de l\'envoi de la réponse';
-      setError(errorMessage);
-      throw new Error(errorMessage);
+      setError(ERROR_MESSAGES.ANSWER_CARD);
+      throw new Error(ERROR_MESSAGES.ANSWER_CARD);
     }
   };
 

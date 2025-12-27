@@ -1,32 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardUserData } from '@/domain/entities';
-import { CardService } from '@/application/services/CardService';
-import { CardApiRepository } from '@/adapters/repositories/CardApiRepository';
-
-const cardService = new CardService(new CardApiRepository());
+import { useCardService } from '@/presentation/contexts/CardServiceContext';
+import { ERROR_MESSAGES } from '@/shared/constants/strings';
 
 export function useCards(tags?: string[]) {
+  const cardService = useCardService();
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadCards();
-  }, [tags]);
-
-  const loadCards = async () => {
+  const loadCards = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
       const data = await cardService.getAllCards(tags);
       setCards(data);
     } catch (err) {
-      setError('Erreur lors du chargement des cartes');
+      setError(ERROR_MESSAGES.LOAD_CARDS);
       console.error(err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [cardService, tags]);
+
+  useEffect(() => {
+    loadCards();
+  }, [loadCards]);
 
   const createCard = async (data: CardUserData): Promise<Card> => {
     try {
@@ -35,9 +34,8 @@ export function useCards(tags?: string[]) {
       setCards([...cards, newCard]);
       return newCard;
     } catch (err) {
-      const errorMessage = 'Erreur lors de la création de la carte';
-      setError(errorMessage);
-      throw new Error(errorMessage);
+      setError(ERROR_MESSAGES.CREATE_CARD);
+      throw new Error(ERROR_MESSAGES.CREATE_CARD);
     }
   };
 

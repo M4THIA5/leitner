@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card } from '@/domain/entities';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
+import { UI_STRINGS } from '@/shared/constants/strings';
 import './QuizCard.css';
 
 interface QuizCardProps {
@@ -40,12 +41,12 @@ export function QuizCard({ card, onSubmit, onForceValidate }: QuizCardProps) {
   return (
     <div className="quiz-card">
       <div className="quiz-card-header">
-        <span className="quiz-card-tag">{card.tag || 'Sans tag'}</span>
+        <span className="quiz-card-tag">{card.tag || UI_STRINGS.NO_TAG}</span>
         <span className="quiz-card-category">{card.category}</span>
       </div>
 
       <div className="quiz-card-question">
-        <strong>Question:</strong>
+        <strong>{UI_STRINGS.QUESTION_LABEL}</strong>
         <p>{card.question}</p>
       </div>
 
@@ -62,7 +63,7 @@ export function QuizCard({ card, onSubmit, onForceValidate }: QuizCardProps) {
       {!showResult ? (
         <div className="quiz-card-actions">
           <Button onClick={handleSubmit} disabled={!userAnswer.trim()}>
-            Valider
+            {UI_STRINGS.SUBMIT_BUTTON}
           </Button>
         </div>
       ) : (
@@ -71,19 +72,19 @@ export function QuizCard({ card, onSubmit, onForceValidate }: QuizCardProps) {
             {isCorrect ? (
               <>
                 <span className="result-icon">✓</span>
-                <span>Correct !</span>
+                <span>{UI_STRINGS.CORRECT_ANSWER}</span>
               </>
             ) : (
               <>
                 <span className="result-icon">✗</span>
-                <span>Incorrect</span>
+                <span>{UI_STRINGS.INCORRECT_ANSWER}</span>
               </>
             )}
           </div>
           
           {!isCorrect && (
             <div className="correct-answer">
-              <strong>Réponse attendue:</strong>
+              <strong>{UI_STRINGS.EXPECTED_ANSWER_LABEL}</strong>
               <p>{card.answer}</p>
             </div>
           )}
@@ -91,11 +92,11 @@ export function QuizCard({ card, onSubmit, onForceValidate }: QuizCardProps) {
           <div className="quiz-card-actions">
             {!isCorrect && onForceValidate && (
               <Button variant="secondary" onClick={handleForceValidate}>
-                Forcer la validation
+                {UI_STRINGS.FORCE_VALIDATE_BUTTON}
               </Button>
             )}
             <Button onClick={handleNext}>
-              Suivant
+              {UI_STRINGS.NEXT_BUTTON}
             </Button>
           </div>
         </div>
