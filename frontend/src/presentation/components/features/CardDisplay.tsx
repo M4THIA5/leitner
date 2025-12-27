@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card } from '@/domain/entities';
 import { UI_STRINGS } from '@/shared/constants/strings';
 import './CardDisplay.css';
