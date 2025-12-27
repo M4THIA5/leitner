@@ -1,0 +1,19 @@
+meta {
+  name: Créer une Fiche
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{API_URL}}/cards
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "question": "Qu'est-ce que le pair programming ?",
+    "answer": "Une pratique consistant à travailler à deux sur le même ordinateur.",
+    "tag": "Teamwork"
+  }
+}

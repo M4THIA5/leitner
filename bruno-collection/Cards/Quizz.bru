@@ -1,0 +1,15 @@
+meta {
+  name: Fiches du Quizz du jour
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{API_URL}}/cards/quizz
+  body: none
+  auth: inherit
+}
+
+query {
+  date: 2023-11-03
+}

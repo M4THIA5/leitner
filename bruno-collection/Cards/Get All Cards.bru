@@ -1,0 +1,15 @@
+meta {
+  name: Lister toutes les Fiches
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{API_URL}}/cards
+  body: none
+  auth: inherit
+}
+
+query {
+  tags: tag1,tag2
+}
