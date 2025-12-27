@@ -1,0 +1,21 @@
+meta {
+  name: Répondre à une Fiche
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{API_URL}}/cards/:cardId/answer
+  body: json
+  auth: inherit
+}
+
+params:path {
+  cardId: 
+}
+
+body:json {
+  {
+    "isValid": true
+  }
+}
