@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCards } from '@/presentation/hooks/useCards';
 import { CardDisplay } from '@/presentation/components/features/CardDisplay';
 import { Button } from '@/presentation/components/ui/Button';
 import { Input } from '@/presentation/components/ui/Input';
 import { CardUserData } from '@/domain/entities';
+import { UI_STRINGS } from '@/shared/constants/strings';
 import './MyCardsPage.css';
 
 export function MyCardsPage() {
+  const navigate = useNavigate();
   const { cards, loading, error, createCard } = useCards();
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [newCard, setNewCard] = useState<CardUserData>({
@@ -33,7 +36,15 @@ export function MyCardsPage() {
   if (loading) {
     return (
       <div className="my-cards-page">
-        <div className="loading">Chargement...</div>
+        <header className="my-cards-header">
+          <div className="header-left">
+            <Button variant="secondary" onClick={() => navigate(-1)}>
+              {UI_STRINGS.BACK_BUTTON}
+            </Button>
+            <h1>Mes cartes</h1>
+          </div>
+        </header>
+        <div className="loading">{UI_STRINGS.LOADING}</div>
       </div>
     );
   }
@@ -41,7 +52,15 @@ export function MyCardsPage() {
   if (error) {
     return (
       <div className="my-cards-page">
-        <div className="error">Erreur: {error}</div>
+        <header className="my-cards-header">
+          <div className="header-left">
+            <Button variant="secondary" onClick={() => navigate(-1)}>
+              {UI_STRINGS.BACK_BUTTON}
+            </Button>
+            <h1>Mes cartes</h1>
+          </div>
+        </header>
+        <div className="error">{UI_STRINGS.ERROR_PREFIX} {error}</div>
       </div>
     );
   }
@@ -49,9 +68,14 @@ export function MyCardsPage() {
   return (
     <div className="my-cards-page">
       <header className="my-cards-header">
-        <h1>Mes cartes</h1>
+        <div className="header-left">
+          <Button variant="secondary" onClick={() => navigate(-1)}>
+            {UI_STRINGS.BACK_BUTTON}
+          </Button>
+          <h1>Mes cartes</h1>
+        </div>
         <Button onClick={() => setShowCreateForm(!showCreateForm)}>
-          {showCreateForm ? 'Annuler' : '+ Nouvelle carte'}
+          {showCreateForm ? UI_STRINGS.CANCEL : UI_STRINGS.CREATE_CARD}
         </Button>
       </header>
 
@@ -84,7 +108,7 @@ export function MyCardsPage() {
             />
             <div className="form-actions">
               <Button type="submit" disabled={!newCard.question || !newCard.answer || isSubmitting}>
-                Créer
+                {UI_STRINGS.CREATE}
               </Button>
             </div>
           </form>
@@ -93,7 +117,7 @@ export function MyCardsPage() {
 
       <div className="cards-list">
         {cards.length === 0 ? (
-          <div className="empty-state">Aucune carte pour le moment</div>
+          <div className="empty-state">{UI_STRINGS.NO_CARDS}</div>
         ) : (
           cards.map((card) => <CardDisplay key={card.id} card={card} />)
         )}

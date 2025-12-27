@@ -11,6 +11,13 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 32px;
+  gap: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .my-cards-header h1 {

@@ -12,6 +12,16 @@ export const UI_STRINGS = {
   CORRECT_ANSWER: 'Correct !',
   INCORRECT_ANSWER: 'Incorrect',
   EXPECTED_ANSWER_LABEL: 'Réponse attendue:',
+  BACK_BUTTON: '← Retour',
+  LOADING: 'Chargement...',
+  LOADING_QUIZ: 'Chargement du quiz...',
+  ERROR_PREFIX: 'Erreur:',
+  CANCEL: 'Annuler',
+  CREATE_CARD: '+ Nouvelle carte',
+  CREATE: 'Créer',
+  NO_CARDS: 'Aucune carte pour le moment',
+  NO_QUIZ_CARDS: '🎉 Aucune carte à réviser aujourd\'hui !',
+  EXCELLENT_WORK: 'Excellent travail !',
 } as const;
 
 export const ERROR_MESSAGES = {
