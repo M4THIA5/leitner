@@ -1,0 +1,61 @@
+.my-cards-page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.my-cards-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.my-cards-header h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.create-card-form {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.create-card-form h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loading,
+.error,
+.empty-state {
+  text-align: center;
+  padding: 48px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  color: #f44336;
+}
+
