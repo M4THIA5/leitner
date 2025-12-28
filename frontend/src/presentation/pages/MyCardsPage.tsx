@@ -43,7 +43,53 @@ export function MyCardsPage() {
             </Button>
             <h1>Mes cartes</h1>
           </div>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              setShowCreateForm(!showCreateForm);
+            }}
+          >
+            {showCreateForm ? UI_STRINGS.CANCEL : UI_STRINGS.CREATE_CARD}
+          </button>
         </header>
+
+        {showCreateForm && (
+          <div className="create-card-form">
+            <h2>{UI_STRINGS.CREATE_CARD_TITLE}</h2>
+            <form onSubmit={handleCreateCard}>
+              <Input
+                type="textarea"
+                value={newCard.question}
+                onChange={(value) => setNewCard({ ...newCard, question: value })}
+                placeholder="Question..."
+                label="Question"
+                rows={3}
+              />
+              <Input
+                type="textarea"
+                value={newCard.answer}
+                onChange={(value) => setNewCard({ ...newCard, answer: value })}
+                placeholder="Réponse..."
+                label="Réponse"
+                rows={3}
+              />
+              <Input
+                type="text"
+                value={newCard.tag || ''}
+                onChange={(value) => setNewCard({ ...newCard, tag: value })}
+                placeholder="Tag (optionnel)..."
+                label="Tag"
+              />
+              <div className="form-actions">
+                <Button type="submit" disabled={!newCard.question || !newCard.answer || isSubmitting}>
+                  {UI_STRINGS.CREATE}
+                </Button>
+              </div>
+            </form>
+          </div>
+        )}
+
         <div className="loading">{UI_STRINGS.LOADING}</div>
       </div>
     );
@@ -59,7 +105,53 @@ export function MyCardsPage() {
             </Button>
             <h1>Mes cartes</h1>
           </div>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              setShowCreateForm(!showCreateForm);
+            }}
+          >
+            {showCreateForm ? UI_STRINGS.CANCEL : UI_STRINGS.CREATE_CARD}
+          </button>
         </header>
+
+        {showCreateForm && (
+          <div className="create-card-form">
+            <h2>{UI_STRINGS.CREATE_CARD_TITLE}</h2>
+            <form onSubmit={handleCreateCard}>
+              <Input
+                type="textarea"
+                value={newCard.question}
+                onChange={(value) => setNewCard({ ...newCard, question: value })}
+                placeholder="Question..."
+                label="Question"
+                rows={3}
+              />
+              <Input
+                type="textarea"
+                value={newCard.answer}
+                onChange={(value) => setNewCard({ ...newCard, answer: value })}
+                placeholder="Réponse..."
+                label="Réponse"
+                rows={3}
+              />
+              <Input
+                type="text"
+                value={newCard.tag || ''}
+                onChange={(value) => setNewCard({ ...newCard, tag: value })}
+                placeholder="Tag (optionnel)..."
+                label="Tag"
+              />
+              <div className="form-actions">
+                <Button type="submit" disabled={!newCard.question || !newCard.answer || isSubmitting}>
+                  {UI_STRINGS.CREATE}
+                </Button>
+              </div>
+            </form>
+          </div>
+        )}
+
         <div className="error">{UI_STRINGS.ERROR_PREFIX} {error}</div>
       </div>
     );
@@ -74,14 +166,20 @@ export function MyCardsPage() {
           </Button>
           <h1>Mes cartes</h1>
         </div>
-        <Button onClick={() => setShowCreateForm(!showCreateForm)}>
-          {showCreateForm ? UI_STRINGS.CANCEL : UI_STRINGS.CREATE_CARD}
-        </Button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              setShowCreateForm(!showCreateForm);
+            }}
+          >
+            {showCreateForm ? UI_STRINGS.CANCEL : UI_STRINGS.CREATE_CARD}
+          </button>
       </header>
 
       {showCreateForm && (
         <div className="create-card-form">
-          <h2>Créer une nouvelle carte</h2>
+          <h2>{UI_STRINGS.CREATE_CARD_TITLE}</h2>
           <form onSubmit={handleCreateCard}>
             <Input
               type="textarea"

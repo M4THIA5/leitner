@@ -18,6 +18,7 @@ export const UI_STRINGS = {
   ERROR_PREFIX: 'Erreur:',
   CANCEL: 'Annuler',
   CREATE_CARD: '+ Nouvelle carte',
+  CREATE_CARD_TITLE: 'Créer une nouvelle carte',
   CREATE: 'Créer',
   NO_CARDS: 'Aucune carte pour le moment',
   NO_QUIZ_CARDS: '🎉 Aucune carte à réviser aujourd\'hui !',

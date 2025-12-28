@@ -31,7 +31,8 @@ export function useCards(tags?: string[]) {
     try {
       setError(null);
       const newCard = await cardService.createCard(data);
-      setCards([...cards, newCard]);
+      const updatedCards = await cardService.getAllCards(tags);
+      setCards(updatedCards);
       return newCard;
     } catch (err) {
       setError(ERROR_MESSAGES.CREATE_CARD);
